@@ -11,7 +11,7 @@ const port = 3000;
 require('dotenv').config();
 
 app.use(cors({
-    origin: "http://localhost:3001", // Allow requests from your frontend
+    origin: "*", // Allow requests from your frontend
     methods: "GET,POST,PUT,DELETE",
     allowedHeaders: "Content-Type,Authorization,x-api-key"
 }));
@@ -56,6 +56,17 @@ app.get('/', (req, res) =>{
 app.use('/claims', claimRoutes);
 app.use('/policyholders', policyholderRoutes);
 app.use('/policies', policyRoutes);
+
+//monitoring
+
+
+
+// Sample route
+app.get('/', (req, res) => {
+  res.send('Hello, Prometheus!');
+});
+
+
 
 // Start the server
 app.listen(port, () => {

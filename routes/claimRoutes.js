@@ -32,10 +32,16 @@ router.get('/', async (req, res) => {
 });
 
 // ✅ Update a claim by ID
-router.put('/:id', validateClaim, async (req, res) => {
+router.put('/claims/:id', validateClaim, async (req, res) => {
   try {
-    const claim = await Claim.findOneAndUpdate(req.params.id, req.body, { new: true });
-    
+    const claim = await Claim.findOneAndUpdate(
+      { id: req.params.id }, // Ensure this ID field matches your database schema
+      req.body,
+      { new: true } // Return the updated document
+    );
+
+    console.log(claim); // Debugging log
+
     if (claim) {
       res.json(claim);
     } else {
