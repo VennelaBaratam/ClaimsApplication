@@ -50,6 +50,9 @@ app.use(express.json());
 app.use(apiKeyAuth);
 
 // Routes
+app.get('/', (req, res) =>{
+    res.status(200).json({message: "I am server! working"});
+} )
 app.use('/claims', claimRoutes);
 app.use('/policyholders', policyholderRoutes);
 app.use('/policies', policyRoutes);
